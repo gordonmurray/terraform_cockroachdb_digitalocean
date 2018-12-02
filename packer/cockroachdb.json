@@ -1,0 +1,37 @@
+{
+  "variables": {
+    "do_token": ""
+  },
+  "builders": [
+    {
+      "droplet_name": "cockroachdb",
+      "snapshot_name": "cockroachdb",
+      "type": "digitalocean",
+      "ssh_username": "root",
+      "api_token": "{{ user `do_token` }}",
+      "image": "ubuntu-18-04-x64",
+      "region": "lon1",
+      "size": "512mb"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/apt.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/cockroachdb.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/do_monitoring.sh"
+      ]
+    }
+  ]
+}
