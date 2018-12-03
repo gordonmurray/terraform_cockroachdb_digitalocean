@@ -8,16 +8,14 @@ resource "digitalocean_droplet" "default" {
   ssh_keys           = ["${var.ssh_keys}"]
   private_networking = "${var.private_networking}"
 
-  provisioner "file" {
-    content     = "${var.content}"
-    destination = "${var.destination}"
-  }
-
+  # Execute shell script and pass in terraform variables as arguments
   provisioner "remote-exec" {
-    inline = [
-      "${var.remote_exec_command}",
-    ]
+      inline = [
+          "sudo systemctl enable cockroachdb",
+          "sudo systemctl start cockroachdb"
+      ]
   }
+  
 }
 
 # Send outputs from this resource back out

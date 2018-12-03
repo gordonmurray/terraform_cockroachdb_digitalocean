@@ -11,7 +11,7 @@ resource "random_string" "first" {
 }
 
 # create a node with a unique hostname
-module "cockroach-1" {
+module "cockroach" {
   source             = "./modules/digitalocean/droplet"
   image              = "${data.digitalocean_image.cockroachdb.image}"
   name               = "cockroachdb-${random_string.first.result}"
@@ -19,7 +19,8 @@ module "cockroach-1" {
   size               = "512mb"
   backups            = "false"
   monitoring         = "true"
-  ssh_keys           = ["${module.my_ssh_key.ssh_fingerprint}"]
+  ssh_keys           = ["66:a9:2e:14:4b:48:83:b7:4b:3f:0c:35:c0:f0:26:46"]
   private_networking = "true"
+
 }
 
