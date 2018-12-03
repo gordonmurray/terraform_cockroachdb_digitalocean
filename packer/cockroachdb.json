@@ -32,6 +32,16 @@
       "scripts": [
         "scripts/do_monitoring.sh"
       ]
+    },
+    {
+      "type": "file",
+      "source": "files/cockroachdb.service",
+      "destination": "/etc/systemd/system/cockroachdb.service"
+    },
+    {
+      "type": "file",
+      "source": "files/start.sh",
+      "destination": "/root/start.sh"
     }
   ]
 }
